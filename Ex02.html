@@ -1,0 +1,50 @@
+<meta charset="utf8" />
+<title>Exercice 2</title>
+<div id="app">
+  <h1>Product list</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="product in products" :key="product.id">
+        <td>{{product.id}}</td>
+        <td>{{product.name}} {{product.isAvalaible ? '' : '(Unavailable)'}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script src="https://unpkg.com/vue@3"></script>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        products: [
+          {
+            id: 111,
+            name: "Screen",
+            price: 233,
+            isAvalaible: false
+          },
+          {
+            id: 222,
+            name: "Keyboard",
+            price: 58,
+            isAvalaible: true
+          },
+          {
+            id: 333,
+            name: "Mouse",
+            price: 25,
+            isAvalaible: true
+          }
+        ]
+      }
+    }
+  }).mount("#app")
+</script>

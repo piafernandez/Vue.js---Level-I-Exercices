@@ -1,0 +1,23 @@
+<meta charset="utf8" />
+<title>Exercice 7</title>
+<div id="app">
+  <h1>Product list</h1>
+  <div v-for="product in products">
+    {{product.title}} {{product.description}} {{product.brand}} {{product.stock}}
+  </div>
+</div>
+<script src="https://unpkg.com/vue@3"></script>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        products: []
+      }
+    },
+    mounted() {
+      fetch("https://dummyjson.com/products")
+        .then((res) => res.json())
+        .then((res) => (this.products = res.products))
+    }
+  }).mount("#app")
+</script>

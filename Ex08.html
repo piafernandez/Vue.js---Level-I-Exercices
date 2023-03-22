@@ -1,0 +1,35 @@
+<meta charset="utf8" />
+<title>Exercice 8</title>
+<div id="app">
+  <h1>Product list</h1>
+  <input placeholder="Search" v-model="searchText" @keyup="search()" />
+  <div v-for="product in products">
+    <h3>{{product.title}} {{product.price}}.-</h3>
+    <img width="200" v-bind:src="product.thumbnail" />
+    <br />
+    {{product.description}}
+    <br />
+    En stock : {{product.stock}}
+    <hr />
+  </div>
+</div>
+<script src="https://unpkg.com/vue@3"></script>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        searchText: "",
+        products: []
+      }
+    },
+    methods: {
+      search() {
+        this.products = []
+        if (this.searchText.length < 3) return
+        fetch(`https://dummyjson.com/products/search?q=${this.searchText}`)
+          .then((res) => res.json())
+          .then((res) => (this.products = res.products))
+      }
+    }
+  }).mount("#app")
+</script>
